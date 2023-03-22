@@ -29,6 +29,12 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()),
             ModCreativeModeTab.MY_TUTORIAL_TAB);
 
+    public static final RegistryObject<Block> SPEED_UP_BLOCK = registerBlock("speed_up_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(9f)
+                    .requiresCorrectToolForDrops()),
+            ModCreativeModeTab.MY_TUTORIAL_TAB);
+
 
     //2 helpers for easier Block creation (inlcuding the item)
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {

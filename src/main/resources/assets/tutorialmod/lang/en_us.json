@@ -2,7 +2,11 @@
   "itemGroup.tutorialtab": "Djih Mod",
 
   "item.tutorialmod.citrine": "Citrine",
+  "item.tutorialmod.magic_ball": "Magischer Ball",
 
-  "block.tutorialmod.citrine_block": "Citrine Block"
+  "block.tutorialmod.citrine_block": "Citrine Block",
+  "block.tutorialmod.speed_up_block": "Foorwaard",
+
+  "item.tutorialmod.magic_ball.no_valuable": "Zonk!!!"
 
 }

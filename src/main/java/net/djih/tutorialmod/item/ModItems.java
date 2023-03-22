@@ -1,6 +1,7 @@
 package net.djih.tutorialmod.item;
 
 import net.djih.tutorialmod.TutorialMod;
+import net.djih.tutorialmod.item.custom.MagicBallItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -19,7 +20,10 @@ public class ModItems {
             () -> new Item(new Item.Properties()
                     .tab(ModCreativeModeTab.MY_TUTORIAL_TAB)));
 
-
+    //Custom item-> use custom item Constructor!
+    public static final RegistryObject<Item> MAGIC_BALL = ITEMS.register( "magic_ball",
+            () -> new MagicBallItem(new Item.Properties()
+                    .tab(ModCreativeModeTab.MY_TUTORIAL_TAB)));
 
     public static  void  register(IEventBus eventBUs)
     {
