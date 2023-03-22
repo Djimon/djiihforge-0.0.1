@@ -16,10 +16,10 @@ public class ModItems {
 
     //For each new Item
     public static final RegistryObject<Item> CITRINE = ITEMS.register( "citrine",
-            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+            () -> new Item(new Item.Properties()
+                    .tab(ModCreativeModeTab.MY_TUTORIAL_TAB)));
 
-    public static final RegistryObject<Item> COTRINE = ITEMS.register( "cotrine",
-            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+
 
     public static  void  register(IEventBus eventBUs)
     {

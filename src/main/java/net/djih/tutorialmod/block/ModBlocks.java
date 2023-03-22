@@ -1,6 +1,7 @@
 package net.djih.tutorialmod.block;
 
 import net.djih.tutorialmod.TutorialMod;
+import net.djih.tutorialmod.item.ModCreativeModeTab;
 import net.djih.tutorialmod.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -25,7 +26,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> CITRINE_BLOCK = registerBlock("citrine_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(9f)
-                    .requiresCorrectToolForDrops()), CreativeModeTab.TAB_MISC);
+                    .requiresCorrectToolForDrops()),
+            ModCreativeModeTab.MY_TUTORIAL_TAB);
 
 
     //2 helpers for easier Block creation (inlcuding the item)

@@ -1,4 +1,8 @@
 {
+  "itemGroup.tutorialtab": "Djih Mod",
+
   "item.tutorialmod.citrine": "Citrine",
-  "item.tutorialmod.citrine_block": "Citrine Block"
+
+  "block.tutorialmod.citrine_block": "Citrine Block"
+
 }
