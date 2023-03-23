@@ -8,6 +8,8 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.GlassBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -37,6 +39,10 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(9f)
                     .requiresCorrectToolForDrops()),
+            ModCreativeModeTab.MY_TUTORIAL_TAB);
+
+    public static final RegistryObject<Block> DUSTY_GLASS = registerBlock("dusty_glass",
+            () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS)),
             ModCreativeModeTab.MY_TUTORIAL_TAB);
 
     public static final RegistryObject<Block> SPEED_UP_BLOCK = registerBlock("speed_up_block",
