@@ -33,6 +33,12 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()),
             ModCreativeModeTab.MY_TUTORIAL_TAB);
 
+    public static final RegistryObject<Block> LOADING_BLOCK = registerBlock("loading_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(9f)
+                    .requiresCorrectToolForDrops()),
+            ModCreativeModeTab.MY_TUTORIAL_TAB);
+
     public static final RegistryObject<Block> SPEED_UP_BLOCK = registerBlock("speed_up_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(9f)

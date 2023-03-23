@@ -31,6 +31,10 @@ public class ModItems {
             () -> new MagicBallItem(new Item.Properties()
                     .tab(ModCreativeModeTab.MY_TUTORIAL_TAB)));
 
+    public static final RegistryObject<Item> MAGIC_DUST = ITEMS.register( "magic_dust",
+            () -> new Item(new Item.Properties()
+                    .tab(ModCreativeModeTab.MY_TUTORIAL_TAB)));
+
     public static  void  register(IEventBus eventBUs)
     {
         ITEMS.register(eventBUs);
