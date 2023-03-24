@@ -1,9 +1,12 @@
 package net.djih.tutorialmod.item.custom;
 
+import net.djih.tutorialmod.item.ModItems;
+import net.djih.tutorialmod.util.InventoryUtil;
 import net.djih.tutorialmod.util.ModTags;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -36,8 +39,14 @@ public class MagicBallItem extends Item {
                 Block blockBelow = pContext.getLevel().getBlockState(positionCLicked.below(i)).getBlock();
 
                 if(isValueableBlock(blockBelow)){
-                    outputValuableCoords(positionCLicked.below(i),player,blockBelow);
+                    //commented out since the new item data_tablet shows the desired information
+                    //outputValuableCoords(positionCLicked.below(i),player,blockBelow);
                     foundBlock = true;
+
+                    //Check if player has DATA_TABLET, then save the info into it
+                    if(InventoryUtil.hasPlayerStackInInventory(player,ModItems.DATA_TABLET.get())){
+                        addNbtToDataTablet(player,positionCLicked.below(i),blockBelow);
+                    }
                     break;
                 }
             }
@@ -54,6 +63,25 @@ public class MagicBallItem extends Item {
         return super.useOn(pContext);
     }
 
+    //Function: add the information from the last scanned ore into the first available dataTable in player Inventory
+    private void addNbtToDataTablet(Player player, BlockPos pos, Block blockBelow){
+        ItemStack dataTablet = player.getInventory().getItem(InventoryUtil.getFirstInventoryIndex(player, ModItems.DATA_TABLET.get()));
+
+        //CompoundTag nbtData = new CompoundTag();
+        if(!dataTablet.hasTag()) {
+            CompoundTag nbtData = new CompoundTag();
+            //pkey = nbt tag name, pValue = inserted value
+            nbtData.putString("tutorialmod.last_ore", "Found " + blockBelow.asItem().getRegistryName().toString() + " at (" +
+                    pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + ")");
+            dataTablet.setTag(nbtData);
+        } else {
+            CompoundTag nbtData = dataTablet.getTag();
+            nbtData.putString("tutorialmod.last_ore", "Found " + blockBelow.asItem().getRegistryName().toString() + " at (" +
+                    pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + ")");
+            dataTablet.setTag(nbtData);
+        }
+    }
+
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if(Screen.hasShiftDown()){
@@ -67,6 +95,7 @@ public class MagicBallItem extends Item {
         player.sendMessage(new TextComponent("Found: " + blockBelow.asItem().getRegistryName().toString() + " at" +
                 "(" + blockPos.getX() + ", " + blockPos.getY() + ", " + blockPos.getZ() +")"),player.getUUID());
     }
+
     private boolean isValueableBlock(Block block){
         // return ModTags.Blocks.MAGIC_BALL_VALUABLE.contains(block); // 1.18.1
         return Registry.BLOCK.getHolderOrThrow(Registry.BLOCK.getResourceKey(block).get()).is(ModTags.Blocks.MAGIC_BALL_VALUABLE);

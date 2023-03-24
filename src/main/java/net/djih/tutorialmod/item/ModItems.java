@@ -2,6 +2,7 @@ package net.djih.tutorialmod.item;
 
 import net.djih.tutorialmod.TutorialMod;
 import net.djih.tutorialmod.item.custom.CitrineCoal;
+import net.djih.tutorialmod.item.custom.DataTabletItem;
 import net.djih.tutorialmod.item.custom.MagicBallItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -34,6 +35,11 @@ public class ModItems {
     public static final RegistryObject<Item> MAGIC_DUST = ITEMS.register( "magic_dust",
             () -> new Item(new Item.Properties()
                     .tab(ModCreativeModeTab.MY_TUTORIAL_TAB)));
+
+    public static final RegistryObject<Item> DATA_TABLET = ITEMS.register( "data_tablet",
+            () -> new DataTabletItem(new Item.Properties()
+                    .tab(ModCreativeModeTab.MY_TUTORIAL_TAB)
+                    .stacksTo(1))); //when using NBT-tags always stacks to 1!
 
     public static  void  register(IEventBus eventBUs)
     {
