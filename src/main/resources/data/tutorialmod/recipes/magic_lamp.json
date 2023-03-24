@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GRG",
+    "RLR",
+    "GRG"
+  ],
+  "key": {
+    "R": {
+      "item": "tutorialmod:magic_dust"
+    },
+    "L": {
+      "item": "minecraft:redstone_lamp"
+    },
+    "G": {
+      "item": "tutorialmod:dusty_glass"
+    }
+  },
+  "result": {
+    "item": "tutorialmod:magic_lamp"
+  }
+}

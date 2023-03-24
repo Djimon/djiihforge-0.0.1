@@ -1,6 +1,7 @@
 package net.djih.tutorialmod.block;
 
 import net.djih.tutorialmod.TutorialMod;
+import net.djih.tutorialmod.block.custom.MagicLampBlock;
 import net.djih.tutorialmod.item.ModCreativeModeTab;
 import net.djih.tutorialmod.item.ModItems;
 import net.minecraft.network.chat.Component;
@@ -43,6 +44,13 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> DUSTY_GLASS = registerBlock("dusty_glass",
             () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS)),
+            ModCreativeModeTab.MY_TUTORIAL_TAB);
+
+    public static final RegistryObject<Block> MAGIC_LAMP = registerBlock("magic_lamp",
+            () -> new MagicLampBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(2f)
+                    .requiresCorrectToolForDrops()
+                    .lightLevel((state) -> state.getValue(MagicLampBlock.CLICKED) ? 15: 2)),
             ModCreativeModeTab.MY_TUTORIAL_TAB);
 
     public static final RegistryObject<Block> SPEED_UP_BLOCK = registerBlock("speed_up_block",
