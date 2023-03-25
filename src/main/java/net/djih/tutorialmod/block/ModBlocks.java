@@ -1,6 +1,7 @@
 package net.djih.tutorialmod.block;
 
 import net.djih.tutorialmod.TutorialMod;
+import net.djih.tutorialmod.block.custom.DustyStation;
 import net.djih.tutorialmod.block.custom.MagicLampBlock;
 import net.djih.tutorialmod.item.ModCreativeModeTab;
 import net.djih.tutorialmod.item.ModItems;
@@ -58,6 +59,12 @@ public class ModBlocks {
                     .strength(9f)
                     .requiresCorrectToolForDrops()),
             ModCreativeModeTab.MY_TUTORIAL_TAB,"tooltip.tutorialmod.speed_up_block");
+
+    public static final RegistryObject<Block> DUSTY_STATION = registerBlock("dusty_station",
+            () -> new DustyStation(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(9f)
+                    .requiresCorrectToolForDrops()),
+            ModCreativeModeTab.MY_TUTORIAL_TAB,"tooltip.tutorialmod.dusty_station");
 
 
     //2 helpers for easier Block creation (inlcuding the item)

@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "tutorialmod:block/dusty_station_side",
+    "front": "tutorialmod:block/dusty_station_front",
+    "side": "tutorialmod:block/dusty_station_side"
+  }
+}

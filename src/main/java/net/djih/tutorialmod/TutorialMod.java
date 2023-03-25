@@ -1,8 +1,12 @@
 package net.djih.tutorialmod;
 
 import net.djih.tutorialmod.block.ModBlocks;
+import net.djih.tutorialmod.block.entity.ModBlockEntities;
 import net.djih.tutorialmod.item.ModItems;
 import com.mojang.logging.LogUtils;
+import net.djih.tutorialmod.screen.DustyStationScreen;
+import net.djih.tutorialmod.screen.ModeMenuTypes;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Blocks;
@@ -32,6 +36,8 @@ public class TutorialMod
         //Call registration
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModBlockEntities.register(eventBus);
+        ModeMenuTypes.register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
@@ -47,6 +53,8 @@ public class TutorialMod
     private void clientSetup(final FMLClientSetupEvent event){
 
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.DUSTY_GLASS.get(), RenderType.translucent());
+
+        MenuScreens.register(ModeMenuTypes.DUSTY_STATION_MENU.get(), DustyStationScreen::new);
     }
 
     private void setup(final FMLCommonSetupEvent event)
