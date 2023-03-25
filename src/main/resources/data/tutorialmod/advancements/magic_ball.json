@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "tutorialmod:magic_ball"
+    },
+    "title": "Magic Balls!",
+    "description": "The most interesting item so far",
+    "frame": "task",
+    "show_toast": true,
+    "annouce_to_chat": true
+  },
+  "parent": "tutorialmod:tutorialmod",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tutorialmod:magic_ball"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
