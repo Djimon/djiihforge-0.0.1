@@ -1,0 +1,15 @@
+{
+  "type": "tutorialmod:dustyfying",
+  "mainInput": {
+      "item": "minecraft:sand"
+  },
+  "extraInput": {
+      "item": "minecraft:gravel"
+  },
+  "catalysator": {
+    "item": "tutorialmod:magic_dust"
+  },
+  "output": {
+   "item": "tutorialmod:dusty_glass"
+  }
+}

@@ -6,10 +6,7 @@ import net.djih.tutorialmod.screen.slot.ModResultSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -22,16 +19,18 @@ public class DustyStationMenu extends AbstractContainerMenu {
 
     private final DustyStationBlockEntity blockEntity;
     private final Level level;
+    private final ContainerData data;
 
     public DustyStationMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()));
+        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
-    public DustyStationMenu(int pContainerId, Inventory inv, BlockEntity entity) {
+    public DustyStationMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModeMenuTypes.DUSTY_STATION_MENU.get(), pContainerId);
         checkContainerSize(inv,4);
         blockEntity = ((DustyStationBlockEntity) entity);
         this.level = inv.player.level;
+        this.data = data;
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
@@ -42,6 +41,20 @@ public class DustyStationMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(handler, 2,103,18));
             this.addSlot(new ModResultSlot(handler, 3,80,60));
         });
+
+        addDataSlots(data);
+    }
+
+    public boolean isCrafting(){
+        return this.data.get(0) > 0;
+    }
+
+    public int getScaledProgress(){
+        int progress = this.data.get(0);
+        int maxProgress = this.data.get(1);
+        int progressArrowSize = 26;
+
+        return maxProgress != 0 && progress != 0 ? progress *progressArrowSize /maxProgress : 0;
     }
 
     private static final int HOTBAR_SLOT_COUNT = 9;

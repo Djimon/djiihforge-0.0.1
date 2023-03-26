@@ -27,6 +27,14 @@ public class DustyStationScreen extends AbstractContainerScreen<DustyStationMenu
         int y = (height - imageHeight) /2;
 
         this.blit(pPoseStack,x,y,0,0,imageWidth,imageHeight);
+
+        if(menu.isCrafting()){
+            //pX, pY: where to start drawing
+            //pUOffset,pVOffset: where to copy from
+            //pUWidth: how wide should be drawn from copy source
+            //pVHeight: how far should be drawn -> % of ScaledProgress
+            blit(pPoseStack,x+102,y+41,176,0,8, menu.getScaledProgress());
+        }
     }
 
     @Override

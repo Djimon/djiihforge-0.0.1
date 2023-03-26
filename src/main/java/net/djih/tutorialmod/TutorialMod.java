@@ -4,6 +4,7 @@ import net.djih.tutorialmod.block.ModBlocks;
 import net.djih.tutorialmod.block.entity.ModBlockEntities;
 import net.djih.tutorialmod.item.ModItems;
 import com.mojang.logging.LogUtils;
+import net.djih.tutorialmod.recipe.ModRecipes;
 import net.djih.tutorialmod.screen.DustyStationScreen;
 import net.djih.tutorialmod.screen.ModeMenuTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -38,6 +39,7 @@ public class TutorialMod
         ModBlocks.register(eventBus);
         ModBlockEntities.register(eventBus);
         ModeMenuTypes.register(eventBus);
+        ModRecipes.register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
