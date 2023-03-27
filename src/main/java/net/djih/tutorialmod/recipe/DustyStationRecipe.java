@@ -45,6 +45,7 @@ public class DustyStationRecipe implements Recipe<SimpleContainer> {
         return slotZero && slotOne && slotTwo;
     }
 
+
     @Override
     public ItemStack assemble(SimpleContainer pContainer) {
         return output;

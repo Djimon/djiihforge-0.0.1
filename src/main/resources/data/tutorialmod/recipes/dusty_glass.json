@@ -1,16 +1,9 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###",
-    "###",
-    "###"
-  ],
-  "key": {
-    "#": {
-      "item": "tutorialmod:magic_dust"
-    }
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "tutorialmod:magic_dust"
   },
-  "result": {
-    "item": "tutorialmod:dusty_glass"
-  }
+  "result": "tutorialmod:dusty_glass",
+  "experience": 0,
+  "cookingtime": 2000
 }

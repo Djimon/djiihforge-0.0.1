@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#C#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tutorialmod:dusty_glass"
+    },
+    "C": {
+      "item": "tutorialmod:citrine_block"
+    }
+  },
+  "result": {
+    "item": "tutorialmod:dusty_station"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "conditions": [
+    {
+      "condition": "block_state_property",
+      "block": "minecraft:deepslate"
+    }
+  ],
+  "addition": "tutorialmod:citrine",
+  "type": "tutorialmod:citrine_from_deepslate"
+}
