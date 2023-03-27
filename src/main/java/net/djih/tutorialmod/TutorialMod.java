@@ -2,6 +2,7 @@ package net.djih.tutorialmod;
 
 import net.djih.tutorialmod.block.ModBlocks;
 import net.djih.tutorialmod.block.entity.ModBlockEntities;
+import net.djih.tutorialmod.entity.ModEntityTypes;
 import net.djih.tutorialmod.item.ModItems;
 import com.mojang.logging.LogUtils;
 import net.djih.tutorialmod.recipe.ModRecipes;
@@ -40,6 +41,8 @@ public class TutorialMod
         ModBlockEntities.register(eventBus);
         ModeMenuTypes.register(eventBus);
         ModRecipes.register(eventBus);
+
+        ModEntityTypes.register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
