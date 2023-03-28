@@ -1,11 +1,13 @@
 package net.djih.tutorialmod.item;
 
 import net.djih.tutorialmod.TutorialMod;
+import net.djih.tutorialmod.entity.ModEntityTypes;
 import net.djih.tutorialmod.item.custom.CitrineCoal;
 import net.djih.tutorialmod.item.custom.DataTabletItem;
 import net.djih.tutorialmod.item.custom.MagicBallItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -40,6 +42,10 @@ public class ModItems {
             () -> new DataTabletItem(new Item.Properties()
                     .tab(ModCreativeModeTab.MY_TUTORIAL_TAB)
                     .stacksTo(1))); //when using NBT-tags always stacks to 1!
+
+    public static final RegistryObject<Item> ORE_CHICKEN_SPAWN_EGG = ITEMS.register( "ore_chicken_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntityTypes.ORE_CHICKEN,0x948e8d, 0x3b3635,
+                    new Item.Properties().tab(ModCreativeModeTab.MY_TUTORIAL_TAB)));
 
     public static  void  register(IEventBus eventBUs)
     {

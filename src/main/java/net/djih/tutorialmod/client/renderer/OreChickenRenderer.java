@@ -13,17 +13,17 @@ import net.minecraft.world.entity.Entity;
 
 import java.util.List;
 
-public class OreChickenRenderer extends MobRenderer<OreChicken, OreChickenModel<OreChicken>> {
+public class OreChickenRenderer extends MobRenderer<OreChicken, OreChickenModel> {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(TutorialMod.MOD_ID,"textures/entities/ore_chicken.png");
 
-    public OreChickenRenderer(EntityRendererProvider.Context context, OreChickenModel<OreChicken> model) {
-        super(context, model, 0.2f);
+    public OreChickenRenderer(EntityRendererProvider.Context context) {
+        super(context, new OreChickenModel(context.bakeLayer(OreChickenModel.LAYER_LOCATION)), 0.2f);
     }
-
 
     @Override
     public ResourceLocation getTextureLocation(OreChicken pEntity) {
-        return null;
+        return TEXTURE;
     }
+
 }

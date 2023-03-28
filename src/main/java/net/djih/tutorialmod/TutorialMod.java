@@ -44,6 +44,7 @@ public class TutorialMod
 
         ModEntityTypes.register(eventBus);
 
+
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
         // Register the enqueueIMC method for modloading

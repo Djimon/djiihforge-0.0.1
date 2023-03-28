@@ -1,19 +1,30 @@
 package net.djih.tutorialmod.client.model;
 
 import com.google.common.collect.ImmutableList;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.djih.tutorialmod.TutorialMod;
+import net.djih.tutorialmod.entity.custom.OreChicken;
 import net.minecraft.client.model.AgeableListModel;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
-public class OreChickenModel<T extends Entity> extends AgeableListModel<T> {
+public class OreChickenModel extends EntityModel<OreChicken> {
+
+    public static ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(TutorialMod.MOD_ID,"ore_chicken"),"main");
 
     public static final String RED_THING = "red_thing";
+
+    private final ModelPart _root;
     private final ModelPart head;
     private final ModelPart body;
     private final ModelPart rightLeg;
@@ -24,6 +35,7 @@ public class OreChickenModel<T extends Entity> extends AgeableListModel<T> {
     private final ModelPart redThing;
 
     public OreChickenModel(ModelPart pRoot) {
+        this._root = pRoot;
         this.head = pRoot.getChild("head");
         this.beak = pRoot.getChild("beak");
         this.redThing = pRoot.getChild("red_thing");
@@ -58,7 +70,7 @@ public class OreChickenModel<T extends Entity> extends AgeableListModel<T> {
         return ImmutableList.of(this.body, this.rightLeg, this.leftLeg, this.rightWing, this.leftWing);
     }
 
-    public void setupAnim(T pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
+    public void setupAnim(OreChicken pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
         this.head.xRot = pHeadPitch * ((float)Math.PI / 180F);
         this.head.yRot = pNetHeadYaw * ((float)Math.PI / 180F);
         this.beak.xRot = this.head.xRot;
@@ -72,4 +84,33 @@ public class OreChickenModel<T extends Entity> extends AgeableListModel<T> {
     }
 
 
+    @Override
+    public void renderToBuffer(PoseStack pPoseStack, VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha) {
+        //body.render(pPoseStack,pBuffer,pPackedLight,pPackedOverlay,pRed,pGreen,pBlue,pAlpha);
+        if (this.young) {
+            pPoseStack.pushPose();
+
+            //BabyHeadOffset Y,Z _> 1,1
+            pPoseStack.translate(0.0D, (double) (5/*BabyHeadOffsetY*/ / 16.0F), (double) (2/*BabyHeadOffsetZ*/ / 16.0F));
+            this.headParts().forEach((p_102081_) -> {
+                p_102081_.render(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
+            });
+            pPoseStack.popPose();
+            pPoseStack.pushPose();
+            float f1 = 1.0F / 2 /*babyBodyScale*/;
+            pPoseStack.scale(f1, f1, f1);
+            pPoseStack.translate(0.0D, (double) (24 /*BabyOffsetY*/ / 16.0F), 0.0D);
+            this.bodyParts().forEach((p_102071_) -> {
+                p_102071_.render(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
+            });
+            pPoseStack.popPose();
+        } else {
+            this.headParts().forEach((p_102061_) -> {
+                p_102061_.render(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
+            });
+            this.bodyParts().forEach((p_102051_) -> {
+                p_102051_.render(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
+            });
+        }
+    }
 }

@@ -1,8 +1,11 @@
 package net.djih.tutorialmod.event;
 
+import com.google.common.eventbus.Subscribe;
 import net.djih.tutorialmod.TutorialMod;
+import net.djih.tutorialmod.client.model.OreChickenModel;
 import net.djih.tutorialmod.client.renderer.OreChickenRenderer;
 import net.djih.tutorialmod.entity.ModEntityTypes;
+import net.djih.tutorialmod.entity.custom.OreChicken;
 import net.djih.tutorialmod.event.loot.CitrineFromDeepslateAdditionModifier;
 import net.djih.tutorialmod.event.loot.MagicDustFromCreeperAdditionModifier;
 import net.djih.tutorialmod.recipe.DustyStationRecipe;
@@ -17,6 +20,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -24,7 +28,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import javax.annotation.Nonnull;
 
 
-@Mod.EventBusSubscriber(modid = TutorialMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = TutorialMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventBusEvent {
 
     @SubscribeEvent
@@ -42,5 +46,12 @@ public class ModEventBusEvent {
                         .setRegistryName(new ResourceLocation(TutorialMod.MOD_ID,"magic_dust_from_creeper"))
         );
     }
+
+    @SubscribeEvent
+    public static void  entityAttributes(EntityAttributeCreationEvent event){
+        event.put(ModEntityTypes.ORE_CHICKEN.get(), OreChicken.getOreChickenAttributes().build());
+    }
+
+
 
 }
